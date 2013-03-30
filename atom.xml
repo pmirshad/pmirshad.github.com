@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Xit0]]></title>
+  <link href="http://pmirshad.github.com/atom.xml" rel="self"/>
+  <link href="http://pmirshad.github.com/"/>
+  <updated>2013-03-30T19:10:57+05:30</updated>
+  <id>http://pmirshad.github.com/</id>
+  <author>
+    <name><![CDATA[Irshad Pananilath]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Create a new database and an associated user in MySQL]]></title>
+    <link href="http://pmirshad.github.com/2013/01/create-a-new-database-and-an-associated-user-in-mysql/"/>
+    <updated>2013-01-19T20:45:00+05:30</updated>
+    <id>http://pmirshad.github.com/2013/01/create-a-new-database-and-an-associated-user-in-mysql</id>
+    <content type="html"><![CDATA[<p>To create a new database and a user who has all privileges to that database in
+MySQL, use the following sequence of commands</p>
+
+<ul>
+<li>Login to the MySQL instance as the admin user (root in my case). This will
+prompt for the password to be entered and drop you to the <code>mysql</code> shell
+afterwards.</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql -u root -p</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!--more-->
+
+
+<ul>
+<li>Create a new database. Don&#8217;t forget the <code>;</code> at the end of commands.</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>create database my_db;</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Create a new user <code>testuser</code> with password as <code>testpasswd</code></li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>grant usage on *.* to testuser@localhost identified by 'testpasswd';</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Grant all privileges for testuser on my_db</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>grant all privileges on my_db.* to testuser@localhost;</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Check if the database was added. This should show <code>my_db</code> in the list</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>show databases;</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Exit the mysql shell and try connecting to my_db as the created user</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>mysql -u testuser -p my_db</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Export a List of Installed Packages in Android]]></title>
+    <link href="http://pmirshad.github.com/2013/01/export-a-list-of-installed-packages-in-android/"/>
+    <updated>2013-01-12T15:51:00+05:30</updated>
+    <id>http://pmirshad.github.com/2013/01/export-a-list-of-installed-packages-in-android</id>
+    <content type="html"><![CDATA[<p>Before switching to a new ROM, I wanted to keep a list of currently installed
+packages on my phone for reference. There are two ways to get this done. Both
+require <a href="http://developer.android.com/tools/help/adb.html"><strong>Android Debug Bridge (adb)</strong></a> to be installed on the system.</p>
+
+<!--more-->
+
+
+<ul>
+<li><p>Use <strong>adb</strong> to get a list of installed packages and then dump the output to a
+file.</p>
+
+<p><code>adb shell pm list packages &gt; ~/installed_packages.txt</code></p></li>
+<li><p>The file <code>packages.xml</code> located at <code>/data/system/</code> contains all information
+about the installed packages. You can backup this to a safe location</p>
+
+<p><code>adb pull /data/system/packages.xml ~/</code></p></li>
+</ul>
+
+
+<p>This
+<a href="http://android.stackexchange.com/questions/9824/how-can-i-export-a-list-of-currently-installed-applications-to-a-file">thread</a> at android.stackexchange.com saved me.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Electronics Parts Shops in India]]></title>
+    <link href="http://pmirshad.github.com/2013/01/electronics-parts-shops-in-india/"/>
+    <updated>2013-01-05T00:31:00+05:30</updated>
+    <id>http://pmirshad.github.com/2013/01/electronics-parts-shops-in-india</id>
+    <content type="html"><![CDATA[<ul>
+<li>http://www.simplelabs.co.in</li>
+<li>http://www.dnatechindia.com</li>
+<li>http://probots.co.in</li>
+<li>http://www.ventor.co.in</li>
+<li>http://robokits.co.in</li>
+<li>http://www.rhydolabz.com</li>
+<li>http://9circuits.com/blog/</li>
+<li>http://sudarmuthu.com/blog/buying-arduino-in-bangalore</li>
+<li>http://www.feemo.in</li>
+<li>http://www.tenettech.com</li>
+<li>http://arduino.cc/en/Main/Buy</li>
+</ul>
+
+
+<h2>Microcontroller Tutorials</h2>
+
+<iframe width="640" height="360"
+src="http://www.youtube.com/embed/videoseries?list=PLE72E4CFE73BD1DE1"
+frameborder="0" allowfullscreen></iframe>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[If]]></title>
+    <link href="http://pmirshad.github.com/2013/01/if/"/>
+    <updated>2013-01-03T16:31:00+05:30</updated>
+    <id>http://pmirshad.github.com/2013/01/if</id>
+    <content type="html"><![CDATA[<blockquote><p>If you can keep your head when all about you<br/>Are losing theirs and blaming it on you;<br/>If you can trust yourself when all men doubt you,<br/>But make allowance for their doubting too:<br/>If you can wait and not be tired by waiting,<br/>Or, being lied about, don&#8217;t deal in lies,<br/>Or being hated don&#8217;t give way to hating,<br/>And yet don&#8217;t look too good, nor talk too wise;</p><p><!--more--></p><p>If you can dream &#8211; and not make dreams your master;<br/>If you can think &#8211; and not make thoughts your aim,<br/>If you can meet with Triumph and Disaster<br/>And treat those two impostors just the same:.<br/>If you can bear to hear the truth you&#8217;ve spoken<br/>Twisted by knaves to make a trap for fools,<br/>Or watch the things you gave your life to, broken,<br/>And stoop and build&#8217;em up with worn-out tools;</p><p>If you can make one heap of all your winnings<br/>And risk it on one turn of pitch-and-toss,<br/>And lose, and start again at your beginnings,<br/>And never breathe a word about your loss:<br/>If you can force your heart and nerve and sinew<br/>To serve your turn long after they are gone,<br/>And so hold on when there is nothing in you<br/>Except the Will which says to them: &#8220;Hold on!&#8221;</p><p>If you can talk with crowds and keep your virtue,<br/>Or walk with Kings &#8211; nor lose the common touch,<br/>If neither foes nor loving friends can hurt you,<br/>If all men count with you, but none too much:<br/>If you can fill the unforgiving minute<br/>With sixty seconds&#8217; worth of distance run,<br/>Yours is the Earth and everything that&#8217;s in it,<br/>And &#8211; which is more &#8211; you&#8217;ll be a Man, my son!</p><footer><strong>If</strong> <cite><a href='http://www.kipling.org.uk/poems_if.htm'>Rudyard Kipling</a></cite></footer></blockquote>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[VirtualBox Boot Error - "NET: Registered protocol family 2"]]></title>
+    <link href="http://pmirshad.github.com/2012/11/virtualbox-boot-error-net-registered-protocol-family-2/"/>
+    <updated>2012-11-16T21:30:00+05:30</updated>
+    <id>http://pmirshad.github.com/2012/11/virtualbox-boot-error-net-registered-protocol-family-2</id>
+    <content type="html"><![CDATA[<p>I was trying to install Ubuntu 6.10 in VirtualBox 4.1.22 and it would get stuck during boot at the following stage,</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>"NET: Registered protocol family 2"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Enabling <em>&#8216;IO APIC&#8217;</em> as mentioned at
+<a href="http://www.deepakkapoor.net/cloudera-virtualbox-boot-error-net-registered-protocol-family-2/">Cloudera VirtualBox boot error NET: Registered protocol family 2</a> did the trick. Thanks Deepak</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Install Windows 8 from USB drive]]></title>
+    <link href="http://pmirshad.github.com/2011/09/install-windows-8-from-usb-drive/"/>
+    <updated>2011-09-15T15:18:00+05:30</updated>
+    <id>http://pmirshad.github.com/2011/09/install-windows-8-from-usb-drive</id>
+    <content type="html"><![CDATA[<p><em>Microsoft’s Windows 7 USB/DVD Download Tool</em> can be used to prepare a USB drive with the Windows 8 setup. The complete guide is available <a href="http://goo.gl/nKIQB">here</a>.</p>
+
+<p>Microsoft’s Windows 7 USB/DVD Download Tool is available @ <a href="http://wudt.codeplex.com/">CodePlex</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dual Booting Windows 7 and Windows 8]]></title>
+    <link href="http://pmirshad.github.com/2011/09/dual-booting-windows-7-and-windows-8/"/>
+    <updated>2011-09-15T14:45:00+05:30</updated>
+    <id>http://pmirshad.github.com/2011/09/dual-booting-windows-7-and-windows-8</id>
+    <content type="html"><![CDATA[<p>Lifehacker has a good article on dual booting Windows 7 and Windows 8. Check it
+out <a href="http://goo.gl/YtU2i">here</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[How i cleaned my Blackberry's trackball]]></title>
+    <link href="http://pmirshad.github.com/2009/08/how-i-cleaned-my-blackberrys-trackball/"/>
+    <updated>2009-08-04T21:20:00+05:30</updated>
+    <id>http://pmirshad.github.com/2009/08/how-i-cleaned-my-blackberrys-trackball</id>
+    <content type="html"><![CDATA[<p>Today morning, I woke up to realize that my blackberry&#8217;s trackball didn&#8217;t
+register scrolls to the left. It would roll to the left but, won&#8217;t let me move
+to select any of the applications. After googling for some time, came upon this
+very useful guide @
+<a href="http://www.blackberryinsight.com/2007/06/13/how-to-clean-your-blackberrys-trackball">BlackBerryInsight</a> on cleaning the blackberry&#8217;s trackball.</p>
+
+<!--more-->
+
+
+<p>Had to remove the trackball fixture and take it apart to clean it. After putting everything together, it worked like a charm.</p>
+
+<p><strong>P.S</strong>: Take pictures if you are disassembling the trackball fixture. Otherwise putting everything back together can be pretty confusing.</p>
+
+<p><img class="center" src="http://3.bp.blogspot.com/_1UAzLLUZnSw/Snhhf8sNcfI/AAAAAAAAAlw/z-07keUFg1s/s1600/blackberry_trackball.jpg">
+<img class="center" src="http://4.bp.blogspot.com/_1UAzLLUZnSw/SnhhgEXZLgI/AAAAAAAAAmA/K1GaCE9-c_o/s1600/blackberry_trackball_ball.jpg"></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Why Should I Care]]></title>
+    <link href="http://pmirshad.github.com/2008/04/why-should-i-care/"/>
+    <updated>2008-04-19T15:11:00+05:30</updated>
+    <id>http://pmirshad.github.com/2008/04/why-should-i-care</id>
+    <content type="html"><![CDATA[<blockquote><p>Was there something more I could have done?<br/>Or was I not meant to be the one?<br/>Where’s the life I thought we would share?<br/>And should I care?</p><p>And will someone else get more of you?<br/>Will she go to sleep more sure of you?<br/>Will she wake up knowing you’re still there?<br/>And why should I care?</p><p>There’s always one to turn and walk away<br/>And one who just wants to stay<br/>But who said that love is always fair?<br/>And why should I care?</p><p>Should I leave you alone here in the dark?<br/>Holding my broken heart<br/>While a promise still hangs in the air<br/>Why should I care?</p><footer><strong>Diana Krall</strong> <cite><a href='http://www.imdb.com/title/tt0139668/soundtrack'>True Crime</a></cite></footer></blockquote>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Witness]]></title>
+    <link href="http://pmirshad.github.com/2008/04/all-these-promises-that-we-make-and-we/"/>
+    <updated>2008-04-12T23:17:00+05:30</updated>
+    <id>http://pmirshad.github.com/2008/04/all-these-promises-that-we-make-and-we</id>
+    <content type="html"><![CDATA[<blockquote><p>&#8220;[with] All these promises that we make and we break.<br/>Why is it, do you think, that people get married ?&#8221;</p><p>&#8220;Because we need a witness to our lives ???&#8221;</p><p>There’s a billion people on the planet.<br/>I mean, what does any one life really mean?</p><p>But in a marriage, you’re promising to care about everything -<br/>the good things, the bad things, the terrible things, the mundane things&#8230;<br/>All of it. All the time, every day.</p><p>You’re saying, &#8220;Your life will not go unnoticed, because I will notice it.&#8221;<br/>&#8220;Your life will not go unwitnessed, because I will be your witness.&#8221;</p><footer><strong>Shall We Dance (2004)</strong> <cite><a href='http://www.imdb.com/title/tt0358135/'>IMDB</a></cite></footer></blockquote>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Pain]]></title>
+    <link href="http://pmirshad.github.com/2008/03/88-minutes/"/>
+    <updated>2008-03-25T12:18:00+05:30</updated>
+    <id>http://pmirshad.github.com/2008/03/88-minutes</id>
+    <content type="html"><![CDATA[<blockquote><p>&#8220;I do believe&#8230; in the rights of victims. I do believe&#8230; that they deserve<br/>recompense. No matter how significant or insignificant it may be&#8230; in<br/>comparison to the loss suffered. I&#8217;ve suffered such a loss. And like some of you<br/>here&#8230; I&#8217;ve spent those sleepless nights&#8230; trying desperately to&#8230; squelch<br/>down that bilish instinct for revenge. And I have wondered&#8230; If this pain<br/>will&#8230; ever abate. I&#8217;ve learnt&#8230; that time does not heal the wound. It will<br/>though, in its most&#8230; merciful way&#8230; blunt the edge&#8230; ever so slightly.&#8221;</p><footer><strong>88 Minutes (2007)</strong> <cite><a href='http://www.imdb.com/title/tt0411061/'>IMDB</a></cite></footer></blockquote>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Juno]]></title>
+    <link href="http://pmirshad.github.com/2008/03/juno/"/>
+    <updated>2008-03-21T23:49:00+05:30</updated>
+    <id>http://pmirshad.github.com/2008/03/juno</id>
+    <content type="html"><![CDATA[<blockquote><p>&#8220;The best thing you can do is find a person<br/>who loves you for exactly what you are.</p><p>Good mood, bad mood, ugly, pretty,<br/>handsome, what have you,</p><p>the right person is still gonna<br/>think the sun shines out of your ass.</p><p>That’s the kind of person<br/>that’s worth sticking with.&#8221;</p><footer><strong>Juno (2007)</strong> <cite><a href='http://www.imdb.com/title/tt0467406/'>IMDB</a></cite></footer></blockquote>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Frivolities it is...]]></title>
+    <link href="http://pmirshad.github.com/2007/11/frivolities-it-is/"/>
+    <updated>2007-11-24T18:26:00+05:30</updated>
+    <id>http://pmirshad.github.com/2007/11/frivolities-it-is</id>
+    <content type="html"><![CDATA[<blockquote><p>Your postponement of deeds till the time when you are free is one of the frivolities of the ego.</p><footer><strong>Ibn Ata&#8217;illah</strong> <cite>Kitāb Al-Hikam</cite></footer></blockquote>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[One has to learn from history!!!]]></title>
+    <link href="http://pmirshad.github.com/2007/11/one-has-to-learn-from-history/"/>
+    <updated>2007-11-24T18:02:00+05:30</updated>
+    <id>http://pmirshad.github.com/2007/11/one-has-to-learn-from-history</id>
+    <content type="html"><![CDATA[<blockquote><p>Those who were destroyed before you were destroyed due to three traits — excess in speech, excess in food, and excess in sleep.</p><footer><strong>Ibrahim al Nakhai</strong> <cite><a href='http://goo.gl/w7YNI'>Preparing for the Day of Judgement</a></cite></footer></blockquote>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Interesting Quote]]></title>
+    <link href="http://pmirshad.github.com/2007/09/when-one-teaches-two-learn-robert-half/"/>
+    <updated>2007-09-19T16:32:00+05:30</updated>
+    <id>http://pmirshad.github.com/2007/09/when-one-teaches-two-learn-robert-half</id>
+    <content type="html"><![CDATA[<blockquote><p>When one teaches, two learn.</p><footer><strong>Robert Half</strong> <cite></cite></footer></blockquote>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[A Friend]]></title>
+    <link href="http://pmirshad.github.com/2007/09/friend-is-one-before-whom-i-may-think/"/>
+    <updated>2007-09-18T14:15:00+05:30</updated>
+    <id>http://pmirshad.github.com/2007/09/friend-is-one-before-whom-i-may-think</id>
+    <content type="html"><![CDATA[<blockquote><p>A friend is one before whom i may think aloud.</p><footer><strong>Ralph Waldo Emerson</strong> <cite></cite></footer></blockquote>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Finally...]]></title>
+    <link href="http://pmirshad.github.com/2007/06/finally/"/>
+    <updated>2007-06-24T02:06:00+05:30</updated>
+    <id>http://pmirshad.github.com/2007/06/finally</id>
+    <content type="html"><![CDATA[<p><img class="center" src="http://4.bp.blogspot.com/_1UAzLLUZnSw/Rn-5cnRwfLI/AAAAAAAAAC0/IT7Gt6DlZoE/s1600/Sudoku.png"></p>
+
+<p><a href="http://en.wikipedia.org/wiki/Sudoku">Sudoku</a>&#8230; it&#8217;s definitely addictive&#8230; I&#8217;ve been trying to crack the HARD Sudoku that comes in <a href="http://en.wikipedia.org/wiki/The_Hindu">The Hindu</a> for quite some time now&#8230; The EASY n MEDIUM levels pose no threat to me, but always get stuck half way through with the HARD level. Had just come back from a late night movie&#8230; <a href="http://www.imdb.com/title/tt0496806/">Ocean&#8217;s Thirteen</a>&#8230;  was in a &#8220;happy&#8221; mood&#8230; the movie and the drive back, were pleasant&#8230; maybe that acted as a catalyst&#8230; i took at it against the backdrop of a peaceful night.. finished it in about 45mins&#8230;  can u believe it!!! i was ecstatic&#8230; wooooowww&#8230; felt like i had conquered the world&#8230; ;-)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Very true...]]></title>
+    <link href="http://pmirshad.github.com/2007/03/very-true/"/>
+    <updated>2007-03-23T16:52:00+05:30</updated>
+    <id>http://pmirshad.github.com/2007/03/very-true</id>
+    <content type="html"><![CDATA[<blockquote><p>It&#8217;s really true that you don&#8217;t know what you know until you try to explain it to someone else!!!</p></blockquote>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Nostalgic]]></title>
+    <link href="http://pmirshad.github.com/2007/03/nostalgic/"/>
+    <updated>2007-03-21T17:11:00+05:30</updated>
+    <id>http://pmirshad.github.com/2007/03/nostalgic</id>
+    <content type="html"><![CDATA[<iframe width="560" height="315" src="http://www.youtube.com/embed/MhtqvNyKeQo"
+frameborder="0" allowfullscreen></iframe>
+
+
+<p><em>a lot has changed since&#8230;</em></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Happiness]]></title>
+    <link href="http://pmirshad.github.com/2007/02/it-is-not-easy-to-find-happiness-in/"/>
+    <updated>2007-02-05T19:21:00+05:30</updated>
+    <id>http://pmirshad.github.com/2007/02/it-is-not-easy-to-find-happiness-in</id>
+    <content type="html"><![CDATA[<blockquote><p>It is not easy to find happiness in ourselves, and it is not possible to find it<br/>elsewhere.</p><footer><strong>Agnes Repplier</strong> <cite></cite></footer></blockquote>
+
+]]></content>
+  </entry>
+  
+</feed>

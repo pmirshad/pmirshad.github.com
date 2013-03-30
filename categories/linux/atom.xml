@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Linux | Xit0]]></title>
+  <link href="http://pmirshad.github.com/categories/linux/atom.xml" rel="self"/>
+  <link href="http://pmirshad.github.com/"/>
+  <updated>2013-03-30T19:10:57+05:30</updated>
+  <id>http://pmirshad.github.com/</id>
+  <author>
+    <name><![CDATA[Irshad Pananilath]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[VirtualBox Boot Error - "NET: Registered protocol family 2"]]></title>
+    <link href="http://pmirshad.github.com/2012/11/virtualbox-boot-error-net-registered-protocol-family-2/"/>
+    <updated>2012-11-16T21:30:00+05:30</updated>
+    <id>http://pmirshad.github.com/2012/11/virtualbox-boot-error-net-registered-protocol-family-2</id>
+    <content type="html"><![CDATA[<p>I was trying to install Ubuntu 6.10 in VirtualBox 4.1.22 and it would get stuck during boot at the following stage,</p>
+
+<p><code>
+"NET: Registered protocol family 2"
+</code></p>
+
+<p>Enabling <em>'IO APIC'</em> as mentioned at
+<a href="http://www.deepakkapoor.net/cloudera-virtualbox-boot-error-net-registered-protocol-family-2/">Cloudera VirtualBox boot error NET: Registered protocol family 2</a> did the trick. Thanks Deepak</p>
+]]></content>
+  </entry>
+  
+</feed>

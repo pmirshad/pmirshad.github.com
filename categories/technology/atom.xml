@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Technology | Xit0]]></title>
+  <link href="http://pmirshad.github.com/categories/technology/atom.xml" rel="self"/>
+  <link href="http://pmirshad.github.com/"/>
+  <updated>2013-03-30T19:10:57+05:30</updated>
+  <id>http://pmirshad.github.com/</id>
+  <author>
+    <name><![CDATA[Irshad Pananilath]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How i cleaned my Blackberry's trackball]]></title>
+    <link href="http://pmirshad.github.com/2009/08/how-i-cleaned-my-blackberrys-trackball/"/>
+    <updated>2009-08-04T21:20:00+05:30</updated>
+    <id>http://pmirshad.github.com/2009/08/how-i-cleaned-my-blackberrys-trackball</id>
+    <content type="html"><![CDATA[<p>Today morning, I woke up to realize that my blackberry's trackball didn't
+register scrolls to the left. It would roll to the left but, won't let me move
+to select any of the applications. After googling for some time, came upon this
+very useful guide @
+<a href="http://www.blackberryinsight.com/2007/06/13/how-to-clean-your-blackberrys-trackball">BlackBerryInsight</a> on cleaning the blackberry's trackball.</p>
+
+<!--more-->
+
+
+<p>Had to remove the trackball fixture and take it apart to clean it. After putting everything together, it worked like a charm.</p>
+
+<p><strong>P.S</strong>: Take pictures if you are disassembling the trackball fixture. Otherwise putting everything back together can be pretty confusing.</p>
+
+<p><img class="center" src="http://3.bp.blogspot.com/<em>1UAzLLUZnSw/Snhhf8sNcfI/AAAAAAAAAlw/z-07keUFg1s/s1600/blackberry_trackball.jpg">
+<img class="center" src="http://4.bp.blogspot.com/</em>1UAzLLUZnSw/SnhhgEXZLgI/AAAAAAAAAmA/K1GaCE9-c_o/s1600/blackberry_trackball_ball.jpg"></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[PageFile not getting created @ the specified location]]></title>
+    <link href="http://pmirshad.github.com/2006/12/windows-pagefile-not-getting-created/"/>
+    <updated>2006-12-14T17:35:00+05:30</updated>
+    <id>http://pmirshad.github.com/2006/12/windows-pagefile-not-getting-created</id>
+    <content type="html"><![CDATA[<p>There was no free space left on my windows installation drive [C:] . So I decided to migrate the page file from C: drive to D: drive.</p>
+
+<!--more-->
+
+
+<p>I opened up the Virtual Memory settings in the My Computer properties page and changed the page file location from C: to D:, setting a minimum size of 1000MB and a maximum size of 1024MB. Then i restarted my PC. But windows popped up an error saying that there was no page file and a page file will be created temporarily. It got created on the C: drive itself. All the registry settings pointed to the new location and the size was also correct. But still the page file never got created on the D: drive.</p>
+
+<p><img class="center" src="http://bp2.blogger.com/_1UAzLLUZnSw/RYFDho61kuI/AAAAAAAAAAM/eT7nD1GcSW4/s1600/D.Drive.jpg"></p>
+
+<p>I did eventually find the problem. The D: drive did not have permissions for SYSTEM group. Adding this group to the security list for D: drive with full permissions did the trick. On the next restart, windows created a new page file on D: drive. I deleted the old one from C: drive. It freed up 1.5GB of space.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: dual boot | Xit0]]></title>
+  <link href="http://pmirshad.github.com/categories/dual-boot/atom.xml" rel="self"/>
+  <link href="http://pmirshad.github.com/"/>
+  <updated>2013-03-30T19:10:57+05:30</updated>
+  <id>http://pmirshad.github.com/</id>
+  <author>
+    <name><![CDATA[Irshad Pananilath]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Dual Booting Windows 7 and Windows 8]]></title>
+    <link href="http://pmirshad.github.com/2011/09/dual-booting-windows-7-and-windows-8/"/>
+    <updated>2011-09-15T14:45:00+05:30</updated>
+    <id>http://pmirshad.github.com/2011/09/dual-booting-windows-7-and-windows-8</id>
+    <content type="html"><![CDATA[<p>Lifehacker has a good article on dual booting Windows 7 and Windows 8. Check it
+out <a href="http://goo.gl/YtU2i">here</a></p>
+]]></content>
+  </entry>
+  
+</feed>
