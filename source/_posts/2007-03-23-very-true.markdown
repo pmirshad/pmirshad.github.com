@@ -1,0 +1,11 @@
+---
+layout: post
+title: "Very true..."
+date: 2007-03-23T16:52:00+05:30
+categories:
+ - Personal
+---
+
+{% blockquote %}
+It's really true that you don't know what you know until you try to explain it to someone else!!!
+{% endblockquote %}

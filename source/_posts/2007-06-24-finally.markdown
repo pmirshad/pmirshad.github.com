@@ -1,0 +1,11 @@
+---
+layout: post
+title: "Finally..."
+date: 2007-06-24T02:06:00+05:30
+categories:
+ - Personal
+---
+
+{% img center http://4.bp.blogspot.com/_1UAzLLUZnSw/Rn-5cnRwfLI/AAAAAAAAAC0/IT7Gt6DlZoE/s1600/Sudoku.png %}
+
+[Sudoku](http://en.wikipedia.org/wiki/Sudoku)... it's definitely addictive... I've been trying to crack the HARD Sudoku that comes in [The Hindu](http://en.wikipedia.org/wiki/The_Hindu) for quite some time now... The EASY n MEDIUM levels pose no threat to me, but always get stuck half way through with the HARD level. Had just come back from a late night movie... [Ocean's Thirteen](http://www.imdb.com/title/tt0496806/)...  was in a "happy" mood... the movie and the drive back, were pleasant... maybe that acted as a catalyst... i took at it against the backdrop of a peaceful night.. finished it in about 45mins...  can u believe it!!! i was ecstatic... wooooowww... felt like i had conquered the world... ;-)

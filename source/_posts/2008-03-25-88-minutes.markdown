@@ -1,0 +1,18 @@
+---
+layout: post
+title: "Pain"
+date: 2008-03-25T12:18:00+05:30
+categories:
+ - Movies
+ - Personal
+---
+
+{% blockquote 88 Minutes (2007) http://www.imdb.com/title/tt0411061/ IMDB %}
+"I do believe... in the rights of victims. I do believe... that they deserve
+recompense. No matter how significant or insignificant it may be... in
+comparison to the loss suffered. I've suffered such a loss. And like some of you
+here... I've spent those sleepless nights... trying desperately to... squelch
+down that bilish instinct for revenge. And I have wondered... If this pain
+will... ever abate. I've learnt... that time does not heal the wound. It will
+though, in its most... merciful way... blunt the edge... ever so slightly."
+{% endblockquote %}

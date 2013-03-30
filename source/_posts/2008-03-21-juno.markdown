@@ -1,0 +1,21 @@
+---
+layout: post
+title: "Juno"
+date: 2008-03-21T23:49:00+05:30
+categories:
+ - Movies
+---
+
+{% blockquote Juno (2007) http://www.imdb.com/title/tt0467406/ IMDB %}
+"The best thing you can do is find a person
+who loves you for exactly what you are.
+
+Good mood, bad mood, ugly, pretty,
+handsome, what have you,
+
+the right person is still gonna
+think the sun shines out of your ass.
+
+That’s the kind of person
+that’s worth sticking with."
+{% endblockquote %}
