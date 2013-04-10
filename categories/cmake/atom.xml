@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: cmake | Xit0]]></title>
+  <link href="http://pmirshad.github.com/categories/cmake/atom.xml" rel="self"/>
+  <link href="http://pmirshad.github.com/"/>
+  <updated>2013-04-10T23:12:47+05:30</updated>
+  <id>http://pmirshad.github.com/</id>
+  <author>
+    <name><![CDATA[Irshad Pananilath]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[CMake: Use Git Branch &amp; Commit Details in Project]]></title>
+    <link href="http://pmirshad.github.com/2013/04/cmake-use-git-branch-and-commit-details-in-project/"/>
+    <updated>2013-04-10T19:16:00+05:30</updated>
+    <id>http://pmirshad.github.com/2013/04/cmake-use-git-branch-and-commit-details-in-project</id>
+    <content type="html"><![CDATA[<p>To use git branch and commit hash information in a CMake project, add the
+following lines to <code>CMakeLists.txt</code></p>
+
+<p>```cmake</p>
+
+<h1>Get the current working branch</h1>
+
+<p>execute_process(
+  COMMAND git rev-parse --abbrev-ref HEAD
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+  OUTPUT_VARIABLE GIT_BRANCH
+  OUTPUT_STRIP_TRAILING_WHITESPACE
+)</p>
+
+<h1>Get the latest abbreviated commit hash of the working branch</h1>
+
+<p>execute_process(
+  COMMAND git log -1 --format=%h
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+  OUTPUT_VARIABLE GIT_COMMIT_HASH
+  OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+```</p>
+
+<p><a href="http://www.cmake.org/cmake/help/cmake2.6docs.html#command:execute_process" title="CMake execute_process">execute_process()</a> runs a single command or a
+sequence of commands and optionally gathers the output into CMake variables. The
+<code>COMMAND</code> is executed in <code>WORKING_DIRECTORY</code> and the STDOUT is saved to
+<code>OUTPUT_VARIABLE</code> after stripping trailing whitespace. The output of <code>git log</code>
+can be <a href="https://www.kernel.org/pub/software/scm/git/docs/git-log.html#_pretty_formats" title="Git log formatting">customized</a>.</p>
+
+<p>Now that these values are available for CMake, there are two ways to use them in
+a project.</p>
+
+<ul>
+<li><p>The easiest and simplest way is to use <a href="http://www.cmake.org/cmake/help/cmake2.6docs.html#command:add_definitions" title="CMake add_definitions">add_definitions()</a> in <code>CMakeLists.txt</code> to make
+the variables available to the C/C++ project.
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='cmake'><span class='line'><span class="nb">add_definitions</span><span class="p">(</span><span class="s2">&quot;-DGIT_COMMIT_HASH=${GIT_COMMIT_HASH}&quot;</span><span class="p">)</span>
+</span><span class='line'><span class="nb">add_definitions</span><span class="p">(</span><span class="s2">&quot;-DGIT_BRANCH=${GIT_BRANCH}&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p></li>
+<li><p>CMake also has the capability to generate a header file (or any file for that
+matter) with the <a href="http://www.cmake.org/cmake/help/cmake2.6docs.html#command:configure_file" title="CMake configure_file">configure_file()</a> command. We can
+utilize this to generate a header file with these definitions and include it in
+the project.</p></li>
+</ul>
+
+
+<p>You'll need to include a template header file in the project source with some
+CMake specific annotations to achieve this. I choose to put <code>version.h.in</code> in
+the <code>include</code> folder in my source directory.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>version.h.in  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='cpp'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">ifndef</span> <span class="n">VERSION_H</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">define</span> <span class="n">VERSION_H</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">define</span> <span class="n">GIT_BRANCH</span> <span class="s">&quot;@GIT_BRANCH@&quot;</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">define</span> <span class="n">GIT_COMMIT_HASH</span> <span class="s">&quot;@GIT_COMMIT_HASH@&quot;</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">endif</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p><code>@GIT_BRANCH@</code> &amp; <code>@GIT_COMMIT_HASH@</code> will be substituted with the
+corresponding values obtained as the output of <code>execute_process()</code> command. The
+double quotes around the substitution variables are necessary if these variables
+have to be used as strings in a C/C++ project.</p>
+
+<p>Add the following command to <code>CMakeLists.txt</code> to perform the generation.</p>
+
+<p><code>cmake
+configure_file(
+  ${CMAKE_SOURCE_DIR}/include/version.h.in
+  ${CMAKE_BINARY_DIR}/generated/version.h
+)
+</code></p>
+
+<p>This will write a <code>version.h</code> file to <code>generated</code> directory of <code>${CMAKE_BINARY_DIR}</code>. Next, the folder <code>generated</code> has to be added to the C/C++ <code>INCLUDE_PATH</code> in <code>CMakeLists.txt</code></p>
+
+<p><code>cmake
+include_directories(${CMAKE_BINARY_DIR}/generated)
+</code></p>
+
+<p>Include <code>version.h</code> in a C/C++ file and you are done.</p>
+
+<p>I've created a sample C project which uses this on <a href="https://github.com/pmirshad/cmake-with-git-metadata" title="Sample project on Github">Github</a>.</p>
+
+<p>PS: Ryan Pavlik has a CMake module for this available on <a href="https://github.com/rpavlik/cmake-modules" title="rpavlik/cmake-modules">Github</a>.
+<a href="http://stackoverflow.com/a/4318642" title="How to read a CMake Variable in C++ source code">stackoverflow</a> has a thread detailing it's usage.</p>
+]]></content>
+  </entry>
+  
+</feed>
