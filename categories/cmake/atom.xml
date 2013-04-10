@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: cmake | Xit0]]></title>
-  <link href="http://pmirshad.github.com/categories/cmake/atom.xml" rel="self"/>
-  <link href="http://pmirshad.github.com/"/>
-  <updated>2013-04-11T00:46:22+05:30</updated>
-  <id>http://pmirshad.github.com/</id>
+  <link href="http://xit0.org/categories/cmake/atom.xml" rel="self"/>
+  <link href="http://xit0.org/"/>
+  <updated>2013-04-11T00:48:48+05:30</updated>
+  <id>http://xit0.org/</id>
   <author>
     <name><![CDATA[Irshad Pananilath]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[CMake: Use Git Branch &amp; Commit Details in Project]]></title>
-    <link href="http://pmirshad.github.com/2013/04/cmake-use-git-branch-and-commit-details-in-project/"/>
+    <link href="http://xit0.org/2013/04/cmake-use-git-branch-and-commit-details-in-project/"/>
     <updated>2013-04-10T19:16:00+05:30</updated>
-    <id>http://pmirshad.github.com/2013/04/cmake-use-git-branch-and-commit-details-in-project</id>
+    <id>http://xit0.org/2013/04/cmake-use-git-branch-and-commit-details-in-project</id>
     <content type="html"><![CDATA[<p>To use git branch and commit hash information in a CMake project, add the
 following lines to <code>CMakeLists.txt</code></p>
 

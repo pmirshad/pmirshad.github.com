@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Gadgets | Xit0]]></title>
-  <link href="http://pmirshad.github.com/categories/gadgets/atom.xml" rel="self"/>
-  <link href="http://pmirshad.github.com/"/>
-  <updated>2013-04-11T00:46:22+05:30</updated>
-  <id>http://pmirshad.github.com/</id>
+  <link href="http://xit0.org/categories/gadgets/atom.xml" rel="self"/>
+  <link href="http://xit0.org/"/>
+  <updated>2013-04-11T00:48:48+05:30</updated>
+  <id>http://xit0.org/</id>
   <author>
     <name><![CDATA[Irshad Pananilath]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[How i cleaned my Blackberry's trackball]]></title>
-    <link href="http://pmirshad.github.com/2009/08/how-i-cleaned-my-blackberrys-trackball/"/>
+    <link href="http://xit0.org/2009/08/how-i-cleaned-my-blackberrys-trackball/"/>
     <updated>2009-08-04T21:20:00+05:30</updated>
-    <id>http://pmirshad.github.com/2009/08/how-i-cleaned-my-blackberrys-trackball</id>
+    <id>http://xit0.org/2009/08/how-i-cleaned-my-blackberrys-trackball</id>
     <content type="html"><![CDATA[<p>Today morning, I woke up to realize that my blackberry's trackball didn't
 register scrolls to the left. It would roll to the left but, won't let me move
 to select any of the applications. After googling for some time, came upon this

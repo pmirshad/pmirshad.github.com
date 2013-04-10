@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: windows | Xit0]]></title>
-  <link href="http://pmirshad.github.com/categories/windows/atom.xml" rel="self"/>
-  <link href="http://pmirshad.github.com/"/>
-  <updated>2013-04-11T00:46:22+05:30</updated>
-  <id>http://pmirshad.github.com/</id>
+  <link href="http://xit0.org/categories/windows/atom.xml" rel="self"/>
+  <link href="http://xit0.org/"/>
+  <updated>2013-04-11T00:48:48+05:30</updated>
+  <id>http://xit0.org/</id>
   <author>
     <name><![CDATA[Irshad Pananilath]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Install Windows 8 from USB drive]]></title>
-    <link href="http://pmirshad.github.com/2011/09/install-windows-8-from-usb-drive/"/>
+    <link href="http://xit0.org/2011/09/install-windows-8-from-usb-drive/"/>
     <updated>2011-09-15T15:18:00+05:30</updated>
-    <id>http://pmirshad.github.com/2011/09/install-windows-8-from-usb-drive</id>
+    <id>http://xit0.org/2011/09/install-windows-8-from-usb-drive</id>
     <content type="html"><![CDATA[<p><em>Microsoft’s Windows 7 USB/DVD Download Tool</em> can be used to prepare a USB drive with the Windows 8 setup. The complete guide is available <a href="http://goo.gl/nKIQB">here</a>.</p>
 
 <p>Microsoft’s Windows 7 USB/DVD Download Tool is available @ <a href="http://wudt.codeplex.com/">CodePlex</a></p>
