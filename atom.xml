@@ -4,7 +4,7 @@
   <title><![CDATA[Xit0]]></title>
   <link href="http://xit0.org/atom.xml" rel="self"/>
   <link href="http://xit0.org/"/>
-  <updated>2013-04-11T01:43:23+05:30</updated>
+  <updated>2013-04-15T00:17:19+05:30</updated>
   <id>http://xit0.org/</id>
   <author>
     <name><![CDATA[Irshad Pananilath]]></name>
@@ -12,6 +12,105 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Remove Redundant /blog Prefix from Octopress website]]></title>
+    <link href="http://xit0.org/2013/04/remove-redundant-slash-blog-prefix-from-octopress-website/"/>
+    <updated>2013-04-14T21:56:00+05:30</updated>
+    <id>http://xit0.org/2013/04/remove-redundant-slash-blog-prefix-from-octopress-website</id>
+    <content type="html"><![CDATA[<p>Octopress, by default, generates static websites with a <code>/blog</code> prefix attached
+to categories, archives and post URLs. This is particularly annoying when the
+blog is hosted at <code>blog.yourdomain.tld</code> and have funny URLs like
+<code>blog.yourdomain.tld/blog/archives</code>.</p>
+
+<p>To get rid of this, I&#8217;ve created a clone of the <code>classic</code> Octopress theme with the necessary changes. It also renames <code>Blog</code> to <code>Home</code> in the navigation bar.</p>
+
+<!--more-->
+
+
+<p>To install and use <code>octopress-classic-no-blog</code> theme:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="nb">cd </span>octopress
+</span><span class='line'><span class="nv">$ </span>git clone git@github.com:pmirshad/octopress-classic-no-blog.git .themes/octopress-classic-no-blog
+</span><span class='line'><span class="nv">$ </span>rake install<span class="o">[</span><span class="s1">&#39;octopress-classic-no-blog&#39;</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Changes are also required in <code>_config.yml</code>. <code>permalink</code>, <code>category_dir</code>,
+<code>pagination_dir</code> properties have to be modified to remove the <code>blog</code> prefix</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1">#permalink: /blog/:year/:month/:day/:title/</span>
+</span><span class='line'><span class="l-Scalar-Plain">permalink</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/:year/:month/:day/:title/</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#category_dir: blog/categories</span>
+</span><span class='line'><span class="l-Scalar-Plain">category_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">categories</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#pagination_dir: blog  # Directory base for pagination URLs eg. /blog/page/2/</span>
+</span><span class='line'><span class="l-Scalar-Plain">pagination_dir</span><span class="p-Indicator">:</span>       <span class="c1"># Directory base for pagination URLs eg. /page/2/</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After installing the theme and fixing <code>_config.yml</code>, generate the blog.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rake generate
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>DIY for other themes</h3>
+
+<p>To achieve this for other themes, the following modifications should suffice.
+[<em>Assumption</em>: The theme is already installed and you are familiar with <em>diffs</em>]</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd </span>octopress/
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Move <code>archives</code> folder from <code>source/blog</code> to <code>source/</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mv -v <span class="nb">source</span>/blog/archives <span class="nb">source</span>/
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Edit <code>source/_includes/custom/navigation.html</code> to fix navigation URLs.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gd">-  &lt;li&gt;&lt;a href=&quot;/&quot;&gt;Blog&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'><span class="gd">-  &lt;li&gt;&lt;a href=&quot;/blog/archives&quot;&gt;Archives&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'><span class="gi">+  &lt;li&gt;&lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'><span class="gi">+  &lt;li&gt;&lt;a href=&quot;/archives&quot;&gt;Archives&lt;/a&gt;&lt;/li&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Edit <code>source/index.html</code> to fix the <em>Archives</em> page URL.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gd">-    &lt;a href=&quot;/blog/archives&quot;&gt;Blog Archives&lt;/a&gt;</span>
+</span><span class='line'><span class="gi">+    &lt;a href=&quot;/archives&quot;&gt;Archives&lt;/a&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>A theme in the <code>.themes</code> folder can be modified similarly, but will have to be
+reinstalled with the <code>rake install['theme-name']</code> command afterwards.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[CMake: Use Git Branch &amp; Commit Details in Project]]></title>
@@ -440,19 +539,6 @@ very useful guide @
     <id>http://xit0.org/2007/03/very-true</id>
     <content type="html"><![CDATA[<blockquote><p>It&#8217;s really true that you don&#8217;t know what you know until you try to explain it to someone else!!!</p></blockquote>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Nostalgic]]></title>
-    <link href="http://xit0.org/2007/03/nostalgic/"/>
-    <updated>2007-03-21T17:11:00+05:30</updated>
-    <id>http://xit0.org/2007/03/nostalgic</id>
-    <content type="html"><![CDATA[<iframe width="560" height="315" src="http://www.youtube.com/embed/MhtqvNyKeQo"
-frameborder="0" allowfullscreen></iframe>
-
-
-<p><em>a lot has changed since&#8230;</em></p>
 ]]></content>
   </entry>
   

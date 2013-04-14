@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Xit0</title>
+  <title>Remove Redundant /blog Prefix from Octopress website - Xit0</title>
   <meta name="author" content="Irshad Pananilath">
 
   
@@ -19,7 +19,7 @@ to categories, archives and post URLs. This is particularly annoying &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://xit0.org">
+  <link rel="canonical" href="http://xit0.org/2013/04/remove-redundant-slash-blog-prefix-from-octopress-website">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Xit0" type="application/atom+xml">
@@ -67,15 +67,12 @@ to categories, archives and post URLs. This is particularly annoying &hellip;">
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/2013/04/remove-redundant-slash-blog-prefix-from-octopress-website/">Remove Redundant /blog Prefix From Octopress Website</a></h1>
+      <h1 class="entry-title">Remove Redundant /blog Prefix From Octopress Website</h1>
     
     
       <p class="meta">
@@ -98,54 +95,29 @@ to categories, archives and post URLs. This is particularly annoying &hellip;">
   </header>
 
 
-  <div class="entry-content"><p>Octopress, by default, generates static websites with a <code>/blog</code> prefix attached
+<div class="entry-content"><p>Octopress, by default, generates static websites with a <code>/blog</code> prefix attached
 to categories, archives and post URLs. This is particularly annoying when the
 blog is hosted at <code>blog.yourdomain.tld</code> and have funny URLs like
 <code>blog.yourdomain.tld/blog/archives</code>.</p>
 
 <p>To get rid of this, I&#8217;ve created a clone of the <code>classic</code> Octopress theme with the necessary changes. It also renames <code>Blog</code> to <code>Home</code> in the navigation bar.</p>
 
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/04/remove-redundant-slash-blog-prefix-from-octopress-website/">Read on &rarr;</a>
-    </footer>
-  
+<!--more-->
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/04/cmake-use-git-branch-and-commit-details-in-project/">CMake: Use Git Branch &amp; Commit Details in Project</a></h1>
-    
-    
-      <p class="meta">
-        
+<p>To install and use <code>octopress-classic-no-blog</code> theme:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="nb">cd </span>octopress
+</span><span class='line'><span class="nv">$ </span>git clone git@github.com:pmirshad/octopress-classic-no-blog.git .themes/octopress-classic-no-blog
+</span><span class='line'><span class="nv">$ </span>rake install<span class="o">[</span><span class="s1">&#39;octopress-classic-no-blog&#39;</span><span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-04-10T19:16:00+05:30" pubdate data-updated="true">Apr 10<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>To use git branch and commit hash information in a CMake project, add the
-following lines to <code>CMakeLists.txt</code></p>
+<p>Changes are also required in <code>_config.yml</code>. <code>permalink</code>, <code>category_dir</code>,
+<code>pagination_dir</code> properties have to be modified to remove the <code>blog</code> prefix</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -155,113 +127,76 @@ following lines to <code>CMakeLists.txt</code></p>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='cmake'><span class='line'><span class="c"># Get the current working branch</span>
-</span><span class='line'><span class="nb">execute_process</span><span class="p">(</span>
-</span><span class='line'>  <span class="s">COMMAND</span> <span class="s">git</span> <span class="s">rev-parse</span> <span class="s">--abbrev-ref</span> <span class="s">HEAD</span>
-</span><span class='line'>  <span class="s">WORKING_DIRECTORY</span> <span class="o">${</span><span class="nv">CMAKE_SOURCE_DIR</span><span class="o">}</span>
-</span><span class='line'>  <span class="s">OUTPUT_VARIABLE</span> <span class="s">GIT_BRANCH</span>
-</span><span class='line'>  <span class="s">OUTPUT_STRIP_TRAILING_WHITESPACE</span>
-</span><span class='line'><span class="p">)</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1">#permalink: /blog/:year/:month/:day/:title/</span>
+</span><span class='line'><span class="l-Scalar-Plain">permalink</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/:year/:month/:day/:title/</span>
 </span><span class='line'>
-</span><span class='line'><span class="c"># Get the latest abbreviated commit hash of the working branch</span>
-</span><span class='line'><span class="nb">execute_process</span><span class="p">(</span>
-</span><span class='line'>  <span class="s">COMMAND</span> <span class="s">git</span> <span class="s">log</span> <span class="s">-1</span> <span class="s">--format=%h</span>
-</span><span class='line'>  <span class="s">WORKING_DIRECTORY</span> <span class="o">${</span><span class="nv">CMAKE_SOURCE_DIR</span><span class="o">}</span>
-</span><span class='line'>  <span class="s">OUTPUT_VARIABLE</span> <span class="s">GIT_COMMIT_HASH</span>
-</span><span class='line'>  <span class="s">OUTPUT_STRIP_TRAILING_WHITESPACE</span>
-</span><span class='line'><span class="p">)</span>
+</span><span class='line'><span class="c1">#category_dir: blog/categories</span>
+</span><span class='line'><span class="l-Scalar-Plain">category_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">categories</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">#pagination_dir: blog  # Directory base for pagination URLs eg. /blog/page/2/</span>
+</span><span class='line'><span class="l-Scalar-Plain">pagination_dir</span><span class="p-Indicator">:</span>       <span class="c1"># Directory base for pagination URLs eg. /page/2/</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p><a href="http://www.cmake.org/cmake/help/cmake2.6docs.html#command:execute_process" title="CMake execute_process">execute_process()</a> runs a single command or a
-sequence of commands and optionally gathers the output into CMake variables. The
-<code>COMMAND</code> is executed in <code>WORKING_DIRECTORY</code> and the STDOUT is saved to
-<code>OUTPUT_VARIABLE</code> after stripping trailing whitespace. The output of <code>git log</code>
-can be <a href="https://www.kernel.org/pub/software/scm/git/docs/git-log.html#_pretty_formats" title="Git log formatting">customized</a>.</p>
+<p>After installing the theme and fixing <code>_config.yml</code>, generate the blog.</p>
 
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rake generate
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>DIY for other themes</h3>
+
+<p>To achieve this for other themes, the following modifications should suffice.
+[<em>Assumption</em>: The theme is already installed and you are familiar with <em>diffs</em>]</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd </span>octopress/
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Move <code>archives</code> folder from <code>source/blog</code> to <code>source/</code>.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mv -v <span class="nb">source</span>/blog/archives <span class="nb">source</span>/
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Edit <code>source/_includes/custom/navigation.html</code> to fix navigation URLs.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gd">-  &lt;li&gt;&lt;a href=&quot;/&quot;&gt;Blog&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'><span class="gd">-  &lt;li&gt;&lt;a href=&quot;/blog/archives&quot;&gt;Archives&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'><span class="gi">+  &lt;li&gt;&lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;</span>
+</span><span class='line'><span class="gi">+  &lt;li&gt;&lt;a href=&quot;/archives&quot;&gt;Archives&lt;/a&gt;&lt;/li&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Edit <code>source/index.html</code> to fix the <em>Archives</em> page URL.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='diff'><span class='line'><span class="gd">-    &lt;a href=&quot;/blog/archives&quot;&gt;Blog Archives&lt;/a&gt;</span>
+</span><span class='line'><span class="gi">+    &lt;a href=&quot;/archives&quot;&gt;Archives&lt;/a&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>A theme in the <code>.themes</code> folder can be modified similarly, but will have to be
+reinstalled with the <code>rake install['theme-name']</code> command afterwards.</p>
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/04/cmake-use-git-branch-and-commit-details-in-project/">Read on &rarr;</a>
-    </footer>
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/01/create-a-new-database-and-an-associated-user-in-mysql/">Create a New Database and an Associated User in MySQL</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Irshad Pananilath</span></span>
 
-<time datetime="2013-01-19T20:45:00+05:30" pubdate data-updated="true">Jan 19<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>To create a new database and a user who has all privileges to that database in
-MySQL, use the following sequence of commands</p>
-
-<ul>
-<li>Login to the MySQL instance as the admin user (root in my case). This will
-prompt for the password to be entered and drop you to the <code>mysql</code> shell
-afterwards.</li>
-</ul>
-
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mysql -u root -p</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/01/create-a-new-database-and-an-associated-user-in-mysql/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/01/export-a-list-of-installed-packages-in-android/">Export a List of Installed Packages in Android</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -273,36 +208,48 @@ afterwards.</li>
   
 
 
-<time datetime="2013-01-12T15:51:00+05:30" pubdate data-updated="true">Jan 12<span>th</span>, 2013</time>
-        
-      </p>
+<time datetime="2013-04-14T21:56:00+05:30" pubdate data-updated="true">Apr 14<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/octopress/'>octopress</a>, <a class='category' href='/categories/theme/'>theme</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://xit0.org/2013/04/remove-redundant-slash-blog-prefix-from-octopress-website/" data-via="pmirshad" data-counturl="http://xit0.org/2013/04/remove-redundant-slash-blog-prefix-from-octopress-website/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2013/04/cmake-use-git-branch-and-commit-details-in-project/" title="Previous Post: CMake: Use Git Branch &amp; Commit Details in Project">&laquo; CMake: Use Git Branch &amp; Commit Details in Project</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-  <div class="entry-content"><p>Before switching to a new ROM, I wanted to keep a list of currently installed
-packages on my phone for reference. There are two ways to get this done. Both
-require <a href="http://developer.android.com/tools/help/adb.html"><strong>Android Debug Bridge (adb)</strong></a> to be installed on the system.</p>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/01/export-a-list-of-installed-packages-in-android/">Read on &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/page/2/">&larr; Older</a>
-    
-    <a href="/archives">Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -335,7 +282,7 @@ require <a href="http://developer.android.com/tools/help/adb.html"><strong>Andro
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/pmirshad">@pmirshad</a> on GitHub
@@ -377,6 +324,7 @@ require <a href="http://developer.android.com/tools/help/adb.html"><strong>Andro
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -391,7 +339,10 @@ require <a href="http://developer.android.com/tools/help/adb.html"><strong>Andro
       var disqus_shortname = 'xit0';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://xit0.org/2013/04/remove-redundant-slash-blog-prefix-from-octopress-website/';
+        var disqus_url = 'http://xit0.org/2013/04/remove-redundant-slash-blog-prefix-from-octopress-website/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -117,16 +117,22 @@
         <lastmod>2013-04-11T01:41:58+05:30</lastmod>
     </url>
     <url>
+        <loc>
+            http://xit0.org/2013/04/remove-redundant-slash-blog-prefix-from-octopress-website/
+        </loc>
+        <lastmod>2013-04-15T00:15:31+05:30</lastmod>
+    </url>
+    <url>
         <loc>http://xit0.org/about/</loc>
         <lastmod>2013-04-11T01:41:58+05:30</lastmod>
     </url>
     <url>
         <loc>http://xit0.org/archives/</loc>
-        <lastmod>2013-04-11T01:41:58+05:30</lastmod>
+        <lastmod>2013-04-15T00:15:31+05:30</lastmod>
     </url>
     <url>
         <loc>http://xit0.org/</loc>
-        <lastmod>2013-04-11T01:41:58+05:30</lastmod>
+        <lastmod>2013-04-15T00:15:31+05:30</lastmod>
     </url>
     <url>
         <loc>http://xit0.org/robots.txt</loc>
