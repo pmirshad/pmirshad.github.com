@@ -7,7 +7,8 @@ title: Xit0
 subtitle: Random Scribblings of a Linux Enthusiast
 author: Irshad Pananilath
 simple_search: http://google.com/search
-description:
+description: "Random Scribblings of a Linux Enthusiast"
+keywords: "linux, octopress, technology, formula 1, life"
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
