@@ -4,7 +4,7 @@
   <title><![CDATA[Xit0]]></title>
   <link href="http://xit0.org/atom.xml" rel="self"/>
   <link href="http://xit0.org/"/>
-  <updated>2013-04-15T00:17:19+05:30</updated>
+  <updated>2013-05-04T01:57:28+05:30</updated>
   <id>http://xit0.org/</id>
   <author>
     <name><![CDATA[Irshad Pananilath]]></name>
@@ -12,6 +12,192 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[SEO for Octopress Websites]]></title>
+    <link href="http://xit0.org/2013/05/seo-for-octopress-websites/"/>
+    <updated>2013-05-03T20:26:00+05:30</updated>
+    <id>http://xit0.org/2013/05/seo-for-octopress-websites</id>
+    <content type="html"><![CDATA[<p>I recently switched my blog from Blogger to Octopress (hosted on
+<a href="https://github.com/">Github</a>) and it&#8217;s fantastic!!!  Here are the search engine
+optimizations I performed on the blog. Most of them are from
+<a href="http://www.yatishmehta.in/seo-for-octopress" title="Yatish Mehta">www.yatishmehta.in</a>, <a href="http://learnaholic.me/2012/10/15/octopress-seo-and-disabling-the-blog-route/" title="learnaholic.me">www.learnaholic.me</a> and
+<a href="http://nothoughtcontrol.com/2012/12/16/customizing-octopress-pt-dot-1/" title="No Thought Control">nothoughtcontrol.com</a>.</p>
+
+<p>I&#8217;ve also incorporated these SEO fixes into the classic octopress theme. It is
+available at <a href="https://github.com/pmirshad/octopress-classic-no-blog" title="Octopress Classic No Blog">octopress-classic-no-blog</a>.</p>
+
+<!-- more -->
+
+
+<h2>Keywords &amp; Description for individual posts</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>---
+</span><span class='line'>layout: post
+</span><span class='line'>title: "SEO for Octopress Websites"
+</span><span class='line'>date: 2013-05-03 20:26
+</span><span class='line'>comments: true
+</span><span class='line'>categories: ["octopress", "theme", "seo"]
+</span><span class='line'>
+</span><span class='line'>keywords: "keywords, for, this, post"
+</span><span class='line'>description: "Description for this post"
+</span><span class='line'>---</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Octopress, by default, when generating a new post using <code>rake new_post["Title"]</code>
+doesn&#8217;t include <code>keywords</code> and <code>description</code> metadata for individual posts. But,
+if they are manually added to a post, the generated html will include them.</p>
+
+<p>You could include both manually for each newly created post or modify the
+<code>Rakefile</code> in the root of the Octopress installation to include these whenever a
+new post is created. Find the <code>new_post</code> task and modify it as follows:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># usage rake new_post[my-new-post] or rake new_post[&#39;my new post&#39;] or rake new_post (defaults to &quot;new-post&quot;)</span>
+</span><span class='line'><span class="n">desc</span> <span class="s2">&quot;Begin a new post in </span><span class="si">#{</span><span class="n">source_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">posts_dir</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'><span class="n">task</span> <span class="ss">:new_post</span><span class="p">,</span> <span class="ss">:title</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">|</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">title</span>
+</span><span class='line'>    <span class="n">title</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">title</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="n">title</span> <span class="o">=</span> <span class="n">get_stdin</span><span class="p">(</span><span class="s2">&quot;Enter a title for your post: &quot;</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="k">raise</span> <span class="s2">&quot;### You haven&#39;t set anything up yet. First run `rake install` to set up an Octopress theme.&quot;</span> <span class="k">unless</span> <span class="no">File</span><span class="o">.</span><span class="n">directory?</span><span class="p">(</span><span class="n">source_dir</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">mkdir_p</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">source_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">posts_dir</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">source_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">posts_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-%d&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">-</span><span class="si">#{</span><span class="n">title</span><span class="o">.</span><span class="n">to_url</span><span class="si">}</span><span class="s2">.</span><span class="si">#{</span><span class="n">new_post_ext</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">if</span> <span class="no">File</span><span class="o">.</span><span class="n">exist?</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</span><span class='line'>    <span class="nb">abort</span><span class="p">(</span><span class="s2">&quot;rake aborted!&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">ask</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">filename</span><span class="si">}</span><span class="s2"> already exists. Do you want to overwrite?&quot;</span><span class="p">,</span> <span class="o">[</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="o">]</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;n&#39;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;Creating new post: </span><span class="si">#{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">post</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;---&quot;</span>
+</span><span class='line'>    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;layout: post&quot;</span>
+</span><span class='line'>    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;title: </span><span class="se">\&quot;</span><span class="si">#{</span><span class="n">title</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/&amp;/</span><span class="p">,</span><span class="s1">&#39;&amp;amp;&#39;</span><span class="p">)</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2">&quot;</span>
+</span><span class='line'>    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;date: </span><span class="si">#{</span><span class="no">Time</span><span class="o">.</span><span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y-%m-%d %H:%M&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;comments: true&quot;</span>
+</span><span class='line'>    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;categories: &quot;</span>
+</span><span class='line'>    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;keywords: &quot;</span>
+</span><span class='line'>    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;description: &quot;</span>
+</span><span class='line'>    <span class="n">post</span><span class="o">.</span><span class="n">puts</span> <span class="s2">&quot;---&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Similar modifications can be performed for <code>new_page</code> task as well.</p>
+
+<h2>Keywords &amp; Description for the main website</h2>
+
+<p>Octopress utilizes the <code>keywords</code> and <code>description</code> of the latest blog post for the
+main website. In most cases, this doesn&#8217;t bode well for the website in terms of
+SEO. It is possible to provide a separate set of keywords and description for
+the main website. Modify <code>_config.yml</code> in the root of the Octopress
+installation to include the additional metadata. <code>description</code> option would
+already be present there.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="ss">url</span><span class="p">:</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">yoursite</span><span class="o">.</span><span class="n">com</span>
+</span><span class='line'><span class="ss">title</span><span class="p">:</span> <span class="no">My</span> <span class="no">Octopress</span> <span class="no">Blog</span>
+</span><span class='line'><span class="ss">subtitle</span><span class="p">:</span> <span class="n">A</span> <span class="n">blogging</span> <span class="n">framework</span> <span class="k">for</span> <span class="n">hackers</span><span class="o">.</span>
+</span><span class='line'><span class="ss">author</span><span class="p">:</span> <span class="no">Your</span> <span class="no">Name</span>
+</span><span class='line'><span class="n">simple_search</span><span class="p">:</span> <span class="ss">http</span><span class="p">:</span><span class="sr">//</span><span class="n">google</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">search</span>
+</span><span class='line'>
+</span><span class='line'><span class="ss">description</span><span class="p">:</span> <span class="s2">&quot;Description for the website&quot;</span>
+</span><span class='line'><span class="ss">keywords</span><span class="p">:</span> <span class="s2">&quot;keywords, for, the, website&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now modify <code>source/_includes/head.html</code>, the file responsible for generating the
+html header for the website, to use this metadata when available. The
+modifications go after the <code>author</code> meta tag.</p>
+
+<figure class='code'><figcaption><span>html source/_includes/head.html </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>{% capture description %}{% if page.description %}{{ page.description }}{% elsif site.description %}{{ site.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
+</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;description&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ description | strip_html | condense_spaces | truncate:150 }}&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>
+</span><span class='line'>{% capture keywords %}{% if page.keywords %}{{ page.keywords }}{% elsif site.keywords %}{{ site.keywords }}{% endif %}{% endcapture %}
+</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;keywords&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ keywords | strip_html | condense_spaces }}&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Remove Redundant /blog Prefix From Octopress URLs</h2>
+
+<p>Octopress, by default, generates static websites with a <code>/blog</code> prefix attached to
+categories, archives and post URLs. This is particularly annoying when the blog
+is hosted at <code>blog.yourdomain.tld</code> and have funny URLs like
+<code>blog.yourdomain.tld/blog/archives</code>. I&#8217;ve written about this <a href="http://xit0.org/2013/04/remove-redundant-slash-blog-prefix-from-octopress-website/" title="Remove Redundant /blog Prefix From Octopress Website URLs">before</a>.</p>
+
+<h2>Single domain for the website</h2>
+
+<p>To prevent google from de-valuing content for having two different URLs, one
+through <code>www.yoursite.tld</code> and another through <code>yoursite.tld</code>, it is better to
+redirect one to the other with a HTTP 301 status code.</p>
+
+<p>I&#8217;ve redirected <code>www.xit0.org</code> to <code>xit0.org</code> through a DNS CNAME record. Refer
+your domain registar&#8217;s help pages on setting this up. If you run the
+blog/website off Heroku, <code>rack-rewrite</code> can be used to achieve this as mentioned
+at <a href="http://www.yatishmehta.in/seo-for-octopress" title="Yatish Mehta">www.yatishmehta.in</a>.</p>
+
+<h2>In Short</h2>
+
+<p>These 4 SEO fixes are beneficial to an Octopress website:</p>
+
+<ul>
+<li><code>description</code> &amp; <code>keywords</code> metadata for individual posts/pages</li>
+<li><code>description</code> &amp; <code>keywords</code> for the main website</li>
+<li>Remove redundant <code>/blog</code> prefix from Octopress URLs</li>
+<li>Single domain for the website</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Remove Redundant /blog Prefix from Octopress website]]></title>
@@ -529,16 +715,6 @@ very useful guide @
     <content type="html"><![CDATA[<p><img class="center" src="http://4.bp.blogspot.com/_1UAzLLUZnSw/Rn-5cnRwfLI/AAAAAAAAAC0/IT7Gt6DlZoE/s1600/Sudoku.png"></p>
 
 <p><a href="http://en.wikipedia.org/wiki/Sudoku">Sudoku</a>&#8230; it&#8217;s definitely addictive&#8230; I&#8217;ve been trying to crack the HARD Sudoku that comes in <a href="http://en.wikipedia.org/wiki/The_Hindu">The Hindu</a> for quite some time now&#8230; The EASY n MEDIUM levels pose no threat to me, but always get stuck half way through with the HARD level. Had just come back from a late night movie&#8230; <a href="http://www.imdb.com/title/tt0496806/">Ocean&#8217;s Thirteen</a>&#8230;  was in a &#8220;happy&#8221; mood&#8230; the movie and the drive back, were pleasant&#8230; maybe that acted as a catalyst&#8230; i took at it against the backdrop of a peaceful night.. finished it in about 45mins&#8230;  can u believe it!!! i was ecstatic&#8230; wooooowww&#8230; felt like i had conquered the world&#8230; ;-)</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Very true...]]></title>
-    <link href="http://xit0.org/2007/03/very-true/"/>
-    <updated>2007-03-23T16:52:00+05:30</updated>
-    <id>http://xit0.org/2007/03/very-true</id>
-    <content type="html"><![CDATA[<blockquote><p>It&#8217;s really true that you don&#8217;t know what you know until you try to explain it to someone else!!!</p></blockquote>
-
 ]]></content>
   </entry>
   

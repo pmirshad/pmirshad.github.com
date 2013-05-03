@@ -4,7 +4,7 @@
   <title><![CDATA[Category: theme | Xit0]]></title>
   <link href="http://xit0.org/categories/theme/atom.xml" rel="self"/>
   <link href="http://xit0.org/"/>
-  <updated>2013-04-15T00:17:19+05:30</updated>
+  <updated>2013-05-04T01:57:28+05:30</updated>
   <id>http://xit0.org/</id>
   <author>
     <name><![CDATA[Irshad Pananilath]]></name>
@@ -12,6 +12,170 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[SEO for Octopress Websites]]></title>
+    <link href="http://xit0.org/2013/05/seo-for-octopress-websites/"/>
+    <updated>2013-05-03T20:26:00+05:30</updated>
+    <id>http://xit0.org/2013/05/seo-for-octopress-websites</id>
+    <content type="html"><![CDATA[<p>I recently switched my blog from Blogger to Octopress (hosted on
+<a href="https://github.com/">Github</a>) and it's fantastic!!!  Here are the search engine
+optimizations I performed on the blog. Most of them are from
+<a href="http://www.yatishmehta.in/seo-for-octopress" title="Yatish Mehta">www.yatishmehta.in</a>, <a href="http://learnaholic.me/2012/10/15/octopress-seo-and-disabling-the-blog-route/" title="learnaholic.me">www.learnaholic.me</a> and
+<a href="http://nothoughtcontrol.com/2012/12/16/customizing-octopress-pt-dot-1/" title="No Thought Control">nothoughtcontrol.com</a>.</p>
+
+<p>I've also incorporated these SEO fixes into the classic octopress theme. It is
+available at <a href="https://github.com/pmirshad/octopress-classic-no-blog" title="Octopress Classic No Blog">octopress-classic-no-blog</a>.</p>
+
+<!-- more -->
+
+
+<h2>Keywords &amp; Description for individual posts</h2>
+
+<h2>```</h2>
+
+<p>layout: post
+title: "SEO for Octopress Websites"
+date: 2013-05-03 20:26
+comments: true
+categories: ["octopress", "theme", "seo"]</p>
+
+<p>keywords: "keywords, for, this, post"</p>
+
+<h2>description: "Description for this post"</h2>
+
+<p>```</p>
+
+<p>Octopress, by default, when generating a new post using <code>rake new_post["Title"]</code>
+doesn't include <code>keywords</code> and <code>description</code> metadata for individual posts. But,
+if they are manually added to a post, the generated html will include them.</p>
+
+<p>You could include both manually for each newly created post or modify the
+<code>Rakefile</code> in the root of the Octopress installation to include these whenever a
+new post is created. Find the <code>new_post</code> task and modify it as follows:</p>
+
+<p>```ruby</p>
+
+<h1>usage rake new_post[my-new-post] or rake new_post['my new post'] or rake new_post (defaults to "new-post")</h1>
+
+<p>desc "Begin a new post in #{source_dir}/#{posts_dir}"
+task :new_post, :title do |t, args|
+  if args.title</p>
+
+<pre><code>title = args.title
+</code></pre>
+
+<p>  else</p>
+
+<pre><code>title = get_stdin("Enter a title for your post: ")
+</code></pre>
+
+<p>  end
+  raise "### You haven't set anything up yet. First run <code>rake install</code> to set up an Octopress theme." unless File.directory?(source_dir)
+  mkdir_p "#{source_dir}/#{posts_dir}"
+  filename = "#{source_dir}/#{posts_dir}/#{Time.now.strftime('%Y-%m-%d')}-#{title.to_url}.#{new_post_ext}"
+  if File.exist?(filename)</p>
+
+<pre><code>abort("rake aborted!") if ask("#{filename} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
+</code></pre>
+
+<p>  end
+  puts "Creating new post: #{filename}"
+  open(filename, 'w') do |post|</p>
+
+<pre><code>post.puts "---"
+post.puts "layout: post"
+post.puts "title: \"#{title.gsub(/&amp;/,'&amp;amp;')}\""
+post.puts "date: #{Time.now.strftime('%Y-%m-%d %H:%M')}"
+post.puts "comments: true"
+post.puts "categories: "
+post.puts "keywords: "
+post.puts "description: "
+post.puts "---"
+</code></pre>
+
+<p>  end
+end
+```</p>
+
+<p>Similar modifications can be performed for <code>new_page</code> task as well.</p>
+
+<h2>Keywords &amp; Description for the main website</h2>
+
+<p>Octopress utilizes the <code>keywords</code> and <code>description</code> of the latest blog post for the
+main website. In most cases, this doesn't bode well for the website in terms of
+SEO. It is possible to provide a separate set of keywords and description for
+the main website. Modify <code>_config.yml</code> in the root of the Octopress
+installation to include the additional metadata. <code>description</code> option would
+already be present there.</p>
+
+<p>```
+url: http://yoursite.com
+title: My Octopress Blog
+subtitle: A blogging framework for hackers.
+author: Your Name
+simple_search: http://google.com/search</p>
+
+<p>description: "Description for the website"
+keywords: "keywords, for, the, website"
+```</p>
+
+<p>Now modify <code>source/_includes/head.html</code>, the file responsible for generating the
+html header for the website, to use this metadata when available. The
+modifications go after the <code>author</code> meta tag.</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>html source/_includes/head.html </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>{% capture description %}{% if page.description %}{{ page.description }}{% elsif site.description %}{{ site.description }}{% else %}{{ content | raw_content }}{% endif %}{% endcapture %}
+</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;description&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ description | strip_html | condense_spaces | truncate:150 }}&quot;</span> <span class="nt">/&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>{% capture keywords %}{% if page.keywords %}{{ page.keywords }}{% elsif site.keywords %}{{ site.keywords }}{% endif %}{% endcapture %}
+</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;keywords&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ keywords | strip_html | condense_spaces }}&quot;</span> <span class="nt">/&gt;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">&lt;p&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2>Remove Redundant /blog Prefix From Octopress URLs</h2>
+
+<p>Octopress, by default, generates static websites with a <code>/blog</code> prefix attached to
+categories, archives and post URLs. This is particularly annoying when the blog
+is hosted at <code>blog.yourdomain.tld</code> and have funny URLs like
+<code>blog.yourdomain.tld/blog/archives</code>. I've written about this <a href="http://xit0.org/2013/04/remove-redundant-slash-blog-prefix-from-octopress-website/" title="Remove Redundant /blog Prefix From Octopress Website URLs">before</a>.</p>
+
+<h2>Single domain for the website</h2>
+
+<p>To prevent google from de-valuing content for having two different URLs, one
+through <code>www.yoursite.tld</code> and another through <code>yoursite.tld</code>, it is better to
+redirect one to the other with a HTTP 301 status code.</p>
+
+<p>I've redirected <code>www.xit0.org</code> to <code>xit0.org</code> through a DNS CNAME record. Refer
+your domain registar's help pages on setting this up. If you run the
+blog/website off Heroku, <code>rack-rewrite</code> can be used to achieve this as mentioned
+at <a href="http://www.yatishmehta.in/seo-for-octopress" title="Yatish Mehta">www.yatishmehta.in</a>.</p>
+
+<h2>In Short</h2>
+
+<p>These 4 SEO fixes are beneficial to an Octopress website:</p>
+
+<ul>
+<li><code>description</code> &amp; <code>keywords</code> metadata for individual posts/pages</li>
+<li><code>description</code> &amp; <code>keywords</code> for the main website</li>
+<li>Remove redundant <code>/blog</code> prefix from Octopress URLs</li>
+<li>Single domain for the website</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Remove Redundant /blog Prefix from Octopress website]]></title>
