@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: python | Xit0]]></title>
+  <link href="http://xit0.org/categories/python/atom.xml" rel="self"/>
+  <link href="http://xit0.org/"/>
+  <updated>2013-07-03T18:20:26+05:30</updated>
+  <id>http://xit0.org/</id>
+  <author>
+    <name><![CDATA[Irshad Pananilath]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Web Server from Any Directory in Linux]]></title>
+    <link href="http://xit0.org/2013/07/web-server-from-any-directory-in-linux/"/>
+    <updated>2013-07-03T17:57:00+05:30</updated>
+    <id>http://xit0.org/2013/07/web-server-from-any-directory-in-linux</id>
+    <content type="html"><![CDATA[<p>If you want to quickly test a website under development or serve a couple of
+webpages from a local directory without the hassle of moving/linking the
+directory to a web server root, the following python command helps:</p>
+
+<!-- more -->
+
+
+<p>Run the following command from the intended directory substituting <code>[port]</code> with
+the required value. It defaults to <code>8000</code> if nothing is specified.</p>
+
+<p>For Python2,</p>
+
+<p><code>python
+python -m SimpleHTTPServer [port]
+</code></p>
+
+<p>For Python3,</p>
+
+<p><code>python
+python -m http.server [port]
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>
